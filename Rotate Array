@@ -1,0 +1,7 @@
+class Solution(object):
+    def rotate(self, nums, k):
+        k=k%len(nums) #if k>length then problem occurs therefore this is done
+        nums1=nums[-k:]
+        nums2=nums[:-k]
+        nums[:]=nums1+nums2
+
