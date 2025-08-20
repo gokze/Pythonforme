@@ -1,0 +1,37 @@
+"""
+class Solution(object):
+    def canJump(self, nums):
+        last_index=len(nums)-1
+        print(last_index)
+        k=0
+        i=0
+        m=0
+        if last_index==0:
+            return True
+        while m<last_index:
+            k=nums[i]
+            i=i+k
+            print(i)
+            m+=1
+            if i>=last_index:
+                return True
+        return False
+        """#My Code (159/175)test cases passed
+class Solution(object):
+    def canJump(self, nums):
+        last_index = len(nums) - 1
+        farthest = 0
+        i = 0
+        
+        while i <= farthest:  # as long as we can move forward
+            farthest = max(farthest, i + nums[i])
+            print("i =", i, "nums[i] =", nums[i], "farthest =", farthest)
+            
+            if farthest >= last_index:  # we can reach the end
+                return True
+            i += 1
+        
+        return False
+
+    
+
