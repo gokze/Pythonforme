@@ -1,0 +1,13 @@
+class Solution(object):
+    def isPalindrome(self, s):
+        cleaned=""
+        for i in range(0,len(s)):
+            if s[i].isalnum():
+                cleaned=cleaned+s[i].lower()
+        print(cleaned)
+        j=len(cleaned)-1
+        for i in range(0,len(cleaned)):
+            if cleaned[i]!=cleaned[j]:
+                return False
+            j-=1
+        return True
