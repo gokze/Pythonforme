@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX 100
+
+char stack[MAX];
+int top = -1;
+
+bool isEmpty() {
+    return (top == -1);
+}
+
+bool isFull() {
+    return (top == MAX - 1);
+}
+
+void push(char c) {
+    if (!isFull()) {
+        stack[++top] = c;
+    }
+}
+
+char pop() {
+    if (!isEmpty()) {
+        return stack[top--];
+    }
+    return '\0';
+}
+
+char peek() {
+    if (!isEmpty()) {
+        return stack[top];
+    }
+    return '\0';
+}
+
+bool isMatchingPair(char open, char close) {
+    return (open == '(' && close == ')') ||
+           (open == '{' && close == '}') ||
+           (open == '[' && close == ']');
+}
+
+bool checkBalancedBrackets(char expr[]) {
+    top = -1;
+    for (int i = 0; expr[i] != '\0'; i++) {
+        char c = expr[i];
+        if (c == '(' || c == '{' || c == '[') {
+            push(c);
+        }
+        else if (c == ')' || c == '}' || c == ']') {
+            if (isEmpty()) return false;
+            char popped = pop();
+            if (!isMatchingPair(popped, c)) return false;
+        }
+    }
+    return isEmpty();
+}
+
+int main() {
+    char expression[MAX];
+    printf("Enter an expression: ");
+    scanf("%s", expression);
+    if (checkBalancedBrackets(expression)) {
+        printf("Brackets are Balanced\n");
+    } else {
+        printf("Brackets are NOT Balanced\n");
+    }
+    return 0;
+}
