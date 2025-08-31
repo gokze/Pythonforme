@@ -1,0 +1,15 @@
+class Solution(object):#using hashmap
+    def canConstruct(self, ransomNote, magazine):
+        freq={}
+        for ch in magazine:
+            if ch not in freq:    
+                freq[ch]=1
+            else:
+                freq[ch]+=1
+        print(freq)
+        for ch in ransomNote:
+            if ch in freq and freq[ch]!=0:
+                freq[ch]-=1
+            else:
+                return False
+        return True
