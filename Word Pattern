@@ -1,0 +1,27 @@
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        # Step 1: split the string into words
+        x = s.split()
+        
+        # Step 2: if lengths don't match, return False
+        if len(pattern) != len(x):
+            return False
+
+        # Step 3: create 2 dictionaries for mapping
+        p_s = {}  # pattern -> string
+        s_p = {}  # string -> pattern
+
+        # Step 4: iterate
+        for i in range(len(pattern)):
+            ch = pattern[i]
+            word = x[i]
+
+            if ch in p_s and p_s[ch] != word:
+                return False
+            if word in s_p and s_p[word] != ch:
+                return False
+
+            p_s[ch] = word
+            s_p[word] = ch
+
+        return True
