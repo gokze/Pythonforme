@@ -1,0 +1,14 @@
+class Solution(object):
+    def isHappy(self, n):
+        seen = set()
+
+        while n != 1 and n not in seen:
+            seen.add(n)
+            total = 0
+            while n > 0:
+                a = n % 10
+                total += a * a
+                n = n // 10   # integer division
+            n = total
+
+        return n == 1
