@@ -1,0 +1,19 @@
+class Solution(object):
+    def numWaterBottles(self, numBottles, numExchange):
+        empty_waterbottles=0
+        sum=0
+        if numBottles//numExchange==0:
+
+            while numBottles>0:
+                sum=sum+numBottles
+                empty_waterbottles=numBottles
+                numBottles=empty_waterbottles//numExchange
+            return sum
+        else:
+            enumBottles=0
+            while numBottles>0:
+                sum=sum+numBottles
+                empty_waterbottles=numBottles+enumBottles
+                numBottles=empty_waterbottles//numExchange
+                enumBottles=empty_waterbottles%numExchange
+            return sum
