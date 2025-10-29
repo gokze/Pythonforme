@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int sum(int *a, int *b) {
+    *a=9;
+    *b=11;
+    return *a + *b;
+}
+
+int main() {
+    int x = 5;
+    int y = 6;
+    int *a = &x;
+    int *b = &y;
+    
+    int summ = sum(a, b);
+    printf("%d", summ );
+    printf("%d", *a+*b);
+    return 0;
+}
