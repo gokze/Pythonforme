@@ -1,0 +1,28 @@
+struct ListNode* removeElements(struct ListNode* head, int val) {
+
+    if(head == NULL) return NULL; // ✅ safety check added for empty list
+
+    struct ListNode *current = head;
+    struct ListNode *temp = head;
+
+    while(head != NULL && head->val == val) { // ✅ check head != NULL first
+        head = head->next;
+        free(temp);
+        if(head == NULL) {
+            return NULL;
+        }
+        temp = head;
+        current = head;
+    }
+
+    while(current != NULL && current->next != NULL) { // ✅ check current->next != NULL
+        if(current->next->val == val) {
+            temp = current->next;
+            current->next = current->next->next;
+            free(temp);
+        } else {
+            current = current->next;
+        }
+    }
+    return head;
+}
