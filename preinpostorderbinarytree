@@ -1,0 +1,61 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *right;
+    struct node *left;
+};
+struct node *create(){
+    int val;
+    struct node *newnode=malloc(sizeof(struct node));
+    printf("ENTER NEW NODE DATA: ");
+    scanf("%d",&val);
+    if(val==-1){
+        return 0;
+    }
+    newnode->data=val;
+    printf("ENTER THE LEFT NODE OF %d:",val);
+    newnode->left=create();
+    printf("ENTER THE RIGHT NODE OF %d:",val);
+    newnode->right=create();
+    return newnode;
+}
+struct node* preorder(struct node *head){
+    if(head==NULL){
+        return 0;
+    }
+    printf("%d ",head->data);
+    preorder(head->left);
+    preorder(head->right);
+    return head;
+}
+struct node*inorder(struct node *head){
+    if(head==NULL){
+        return 0;
+    }
+    inorder(head->left);
+    printf("%d ",head->data);
+    inorder(head->right);
+    return head;
+}
+struct node*postorder(struct node *head){
+    if(head==NULL){
+        return 0;
+    }
+    inorder(head->left);
+    inorder(head->right);
+    printf("%d ",head->data);
+    return head;
+    
+}
+int main() {
+    struct node *head=NULL;
+    head=create();
+    printf("PREORDER: /n");
+    head=preorder(head);
+    printf("INORDER: /n");
+    head=inorder(head);
+    printf("POSTORDER: /n");
+    head=postorder(head);
+}
