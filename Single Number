@@ -1,0 +1,15 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        out=list()
+        dup=list()
+        for i,j in enumerate(nums):
+            if j not in out:
+                out.append(j)
+            else:
+                dup.append(j)
+        print(out)
+        print(dup)
+        for i in out:
+            if i not in dup:
+                return i
+            
